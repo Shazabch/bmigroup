@@ -1,0 +1,8 @@
+[17-Nov-2022 16:24:15 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Http\Kernel' not found in /home/demos/public_html/bmi/app/Http/Kernel.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Http/Kernel.php on line 7
+[17-Nov-2022 16:24:17 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Http\Kernel' not found in /home/demos/public_html/bmi/app/Http/Kernel.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Http/Kernel.php on line 7

@@ -1,0 +1,7 @@
+[02-Nov-2022 21:46:52 UTC] PHP Fatal error:  Cannot declare class CreateDebitNotesTable, because the name is already in use in /home/demos/public_html/bmi/database/migrations/2022_08_17_041945_create_debit_notes_table1.php on line 7
+[04-Nov-2022 04:42:25 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 2621440 bytes) in /home/demos/public_html/bmi/vendor/composer/autoload_classmap.php on line 1188
+[04-Nov-2022 04:42:25 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32768 bytes) in /home/demos/public_html/bmi/vendor/nunomaduro/collision/src/Highlighter.php on line 241
+[04-Nov-2022 04:43:23 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 2621440 bytes) in /home/demos/public_html/bmi/vendor/composer/autoload_classmap.php on line 1188
+[04-Nov-2022 04:43:23 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32768 bytes) in /home/demos/public_html/bmi/vendor/nunomaduro/collision/src/Highlighter.php on line 241
+[04-Nov-2022 04:50:52 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 2621440 bytes) in /home/demos/public_html/bmi/vendor/composer/autoload_classmap.php on line 1188
+[04-Nov-2022 04:50:52 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32768 bytes) in /home/demos/public_html/bmi/vendor/nunomaduro/collision/src/Highlighter.php on line 241

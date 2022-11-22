@@ -1,0 +1,4 @@
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\ServiceProvider' not found in /home/demos/public_html/bmi/app/Providers/AppServiceProvider.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Providers/AppServiceProvider.php on line 9

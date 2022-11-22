@@ -1,0 +1,12 @@
+[17-Nov-2022 16:24:15 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Auth\User' not found in /home/demos/public_html/bmi/app/Models/Admin.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Models/Admin.php on line 12
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/demos/public_html/bmi/app/Models/CreditNote.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Models/CreditNote.php on line 8
+[17-Nov-2022 16:24:17 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Auth\User' not found in /home/demos/public_html/bmi/app/Models/Admin.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Models/Admin.php on line 12

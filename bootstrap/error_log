@@ -1,0 +1,16 @@
+[17-Nov-2022 16:24:12 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Application' not found in /home/demos/public_html/bmi/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/bootstrap/app.php on line 14
+[17-Nov-2022 16:24:13 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Application' not found in /home/demos/public_html/bmi/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/bootstrap/app.php on line 14
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Application' not found in /home/demos/public_html/bmi/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/bootstrap/app.php on line 14
+[17-Nov-2022 16:24:20 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Application' not found in /home/demos/public_html/bmi/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/bootstrap/app.php on line 14

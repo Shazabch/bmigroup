@@ -1,0 +1,136 @@
+[17-Nov-2022 16:24:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/app.php on line 16
+[17-Nov-2022 16:24:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/websockets.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/websockets.php on line 11
+[17-Nov-2022 16:24:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/broadcasting.php on line 18
+[17-Nov-2022 16:24:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/demos/public_html/bmi/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/view.php on line 17
+[17-Nov-2022 16:24:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/websockets.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/websockets.php on line 11
+[17-Nov-2022 16:24:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/cache.php on line 18
+[17-Nov-2022 16:24:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/session.php on line 21
+[17-Nov-2022 16:24:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/broadcasting.php on line 18
+[17-Nov-2022 16:24:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/demos/public_html/bmi/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/view.php on line 17
+[17-Nov-2022 16:24:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/services.php on line 18
+[17-Nov-2022 16:24:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/app.php on line 16
+[17-Nov-2022 16:24:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/cache.php on line 18
+[17-Nov-2022 16:24:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/session.php on line 21
+[17-Nov-2022 16:24:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/database.php on line 18
+[17-Nov-2022 16:24:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/sanctum.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/sanctum.php on line 16
+[17-Nov-2022 16:24:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/websockets.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/websockets.php on line 11
+[17-Nov-2022 16:24:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/services.php on line 18
+[17-Nov-2022 16:24:15 UTC] PHP Fatal error:  Uncaught Error: Class 'Maatwebsite\Excel\Excel' not found in /home/demos/public_html/bmi/config/excel.php:164
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/excel.php on line 164
+[17-Nov-2022 16:24:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/filesystems.php on line 16
+[17-Nov-2022 16:24:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/demos/public_html/bmi/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/view.php on line 17
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/queue.php on line 16
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/database.php on line 18
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/broadcasting.php on line 18
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/sanctum.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/sanctum.php on line 16
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/app.php on line 16
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/cache.php on line 18
+[17-Nov-2022 16:24:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/session.php on line 21
+[17-Nov-2022 16:24:17 UTC] PHP Fatal error:  Uncaught Error: Class 'Maatwebsite\Excel\Excel' not found in /home/demos/public_html/bmi/config/excel.php:164
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/excel.php on line 164
+[17-Nov-2022 16:24:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/filesystems.php on line 16
+[17-Nov-2022 16:24:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/services.php on line 18
+[17-Nov-2022 16:24:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/queue.php on line 16
+[17-Nov-2022 16:24:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/database.php on line 18
+[17-Nov-2022 16:24:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/demos/public_html/bmi/config/websockets.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/websockets.php on line 11
+[17-Nov-2022 16:24:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/demos/public_html/bmi/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/config/view.php on line 17

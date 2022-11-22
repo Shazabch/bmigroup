@@ -1,0 +1,52 @@
+[17-Nov-2022 16:24:13 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Route' not found in /home/demos/public_html/bmi/routes/api.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/routes/api.php on line 17
+[17-Nov-2022 16:24:14 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Route' not found in /home/demos/public_html/bmi/routes/auth.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/routes/auth.php on line 13
+[17-Nov-2022 16:24:14 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Route' not found in /home/demos/public_html/bmi/routes/web.php:32
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/routes/web.php on line 32
+[17-Nov-2022 16:24:14 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Route' not found in /home/demos/public_html/bmi/routes/api.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/routes/api.php on line 17
+[17-Nov-2022 16:24:14 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Broadcast' not found in /home/demos/public_html/bmi/routes/channels.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/routes/channels.php on line 16
+[17-Nov-2022 16:24:15 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Artisan' not found in /home/demos/public_html/bmi/routes/console.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/routes/console.php on line 17
+[17-Nov-2022 16:24:15 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Route' not found in /home/demos/public_html/bmi/routes/auth.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/routes/auth.php on line 13
+[17-Nov-2022 16:24:15 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Route' not found in /home/demos/public_html/bmi/routes/web.php:32
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/routes/web.php on line 32
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Broadcast' not found in /home/demos/public_html/bmi/routes/channels.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/routes/channels.php on line 16
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Artisan' not found in /home/demos/public_html/bmi/routes/console.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/routes/console.php on line 17
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Route' not found in /home/demos/public_html/bmi/routes/api.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/routes/api.php on line 17
+[17-Nov-2022 16:24:18 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Route' not found in /home/demos/public_html/bmi/routes/auth.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/routes/auth.php on line 13
+[17-Nov-2022 16:24:18 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Route' not found in /home/demos/public_html/bmi/routes/web.php:32
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/routes/web.php on line 32

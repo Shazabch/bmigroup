@@ -1,0 +1,48 @@
+[17-Nov-2022 16:24:14 UTC] PHP Fatal error:  Uncaught Error: Interface 'Maatwebsite\Excel\Concerns\FromCollection' not found in /home/demos/public_html/bmi/app/Exports/CreditNotes.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Exports/CreditNotes.php on line 13
+[17-Nov-2022 16:24:14 UTC] PHP Fatal error:  Uncaught Error: Interface 'Maatwebsite\Excel\Concerns\FromCollection' not found in /home/demos/public_html/bmi/app/Exports/DebitNotes.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Exports/DebitNotes.php on line 13
+[17-Nov-2022 16:24:15 UTC] PHP Fatal error:  Uncaught Error: Interface 'Maatwebsite\Excel\Concerns\FromCollection' not found in /home/demos/public_html/bmi/app/Exports/User_invoiceExport.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Exports/User_invoiceExport.php on line 13
+[17-Nov-2022 16:24:15 UTC] PHP Fatal error:  Uncaught Error: Interface 'Maatwebsite\Excel\Concerns\FromCollection' not found in /home/demos/public_html/bmi/app/Exports/DelivertOrders.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Exports/DelivertOrders.php on line 15
+[17-Nov-2022 16:24:15 UTC] PHP Fatal error:  Uncaught Error: Interface 'Maatwebsite\Excel\Concerns\FromCollection' not found in /home/demos/public_html/bmi/app/Exports/CreditNotes.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Exports/CreditNotes.php on line 13
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Interface 'Maatwebsite\Excel\Concerns\FromCollection' not found in /home/demos/public_html/bmi/app/Exports/InvoiceExport.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Exports/InvoiceExport.php on line 12
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Interface 'Maatwebsite\Excel\Concerns\FromCollection' not found in /home/demos/public_html/bmi/app/Exports/DebitNotes.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Exports/DebitNotes.php on line 13
+[17-Nov-2022 16:24:16 UTC] PHP Fatal error:  Uncaught Error: Interface 'Maatwebsite\Excel\Concerns\FromCollection' not found in /home/demos/public_html/bmi/app/Exports/User_invoiceExport.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Exports/User_invoiceExport.php on line 13
+[17-Nov-2022 16:24:17 UTC] PHP Fatal error:  Uncaught Error: Interface 'Maatwebsite\Excel\Concerns\FromCollection' not found in /home/demos/public_html/bmi/app/Exports/DelivertOrders.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Exports/DelivertOrders.php on line 15
+[17-Nov-2022 16:24:17 UTC] PHP Fatal error:  Uncaught Error: Interface 'Maatwebsite\Excel\Concerns\FromCollection' not found in /home/demos/public_html/bmi/app/Exports/InvoiceExport.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Exports/InvoiceExport.php on line 12
+[17-Nov-2022 16:24:18 UTC] PHP Fatal error:  Uncaught Error: Interface 'Maatwebsite\Excel\Concerns\FromCollection' not found in /home/demos/public_html/bmi/app/Exports/CreditNotes.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Exports/CreditNotes.php on line 13
+[17-Nov-2022 16:24:18 UTC] PHP Fatal error:  Uncaught Error: Interface 'Maatwebsite\Excel\Concerns\FromCollection' not found in /home/demos/public_html/bmi/app/Exports/DebitNotes.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/demos/public_html/bmi/app/Exports/DebitNotes.php on line 13
