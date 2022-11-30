@@ -14,11 +14,11 @@ class AddCustomerPoColumnAtDeliveryOrders extends Migration
     public function up()
     {
         Schema::table('delivery_orders', function (Blueprint $table) {
-            $table->string('customer_no');
-            $table->string('po_no');
-            $table->date('do_date');
-            $table->string('ref_no');
-            $table->string('amount');
+            $table->string('customer_no')->nullable();
+            $table->string('po_no')->nullable();
+            $table->date('do_date')->nullable();
+            $table->string('ref_no')->nullable();
+            $table->string('amount')->nullable();
         });
     }
 

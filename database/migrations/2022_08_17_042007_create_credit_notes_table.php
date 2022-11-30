@@ -21,7 +21,7 @@ class CreateCreditNotesTable extends Migration
             $table->date('payment_term');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('deliveryorder_id');
+            $table->unsignedBigInteger('deliveryorder_id')->nullable();
             $table->foreign('deliveryorder_id')->references('id')->on('delivery_orders')->onDelete('cascade');
             $table->timestamps();
         });

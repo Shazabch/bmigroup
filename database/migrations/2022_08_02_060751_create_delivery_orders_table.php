@@ -23,7 +23,7 @@ class CreateDeliveryOrdersTable extends Migration
             $table->foreign('invoice_id')
              ->references('id')->on('invoices')->onDelete('cascade');
 
-            $table->date('date');
+            $table->date('date')->nullable();
             $table->string('do_no');
             $table->string('do_doc');
             $table->timestamps();
