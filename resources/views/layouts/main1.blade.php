@@ -452,6 +452,7 @@
   @yield('scripts')
   
   @livewireScripts
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="{{ asset('js/app.js') }}" defer></script>
   <script src="{{asset('soft-theme/assets/js/plugins/dragula/dragula.min.js')}}"></script>
   <script src="{{asset('soft-theme/assets/js/plugins/jkanban/jkanban.js')}}"></script>
@@ -609,6 +610,7 @@
 
     
       <script>
+
             @if(Session::has('success'))
             toastr.options =
             {
@@ -628,42 +630,39 @@
             @endif
        </script>
        
+       
        <script>
-       
-       
-        $('.customer_no').each(function(index , element){
+            $('.customer_no').each(function(index , element){
                 const inv = $(element).val();
-                    var url = '{{ route("getCustomerName", ":id") }}';
-                    var selectCustomer = $(element).parent().parent().parent().find('#dynamic-name');
-                    url = url.replace(':id', inv);
-                    $.ajax({
-                             type: 'get',
-                             url: url,
-                             async:false,
-                             dataType: 'json',
-                             success: function(response) {
-                                selectCustomer.val(response);
-                             }
-                         });
-        });
-        
-        
-        
-           $(document).on('change','#user_id',function(){
-    var id = $(this).val();
-    console.log(id);
-    var url = '{{ route("getCustomerNo", ":id") }}';
-    url = url.replace(':id', id);
-    $.ajax({
-             type: 'get',
-             url: url,
-             dataType: 'json',
-             success: function(response) {
-                 $('#customer_no').val(response);
+                var url = '{{ route("getCustomerName", ":id") }}';
+                var selectCustomer = $(element).parent().parent().parent().find('#dynamic-name');
+                url = url.replace(':id', inv);
+                $.ajax({
+                    type: 'get',
+                    url: url,
+                    async:false,
+                    dataType: 'json',
+                    success: function(response) {
+                    selectCustomer.val(response);
+                    }
+                });
+            });
+            
+            $(document).on('change','#user_id',function(){
+            var id = $(this).val();
+            console.log(id);
+            var url = '{{ route("getCustomerNo", ":id") }}';
+            url = url.replace(':id', id);
+            $.ajax({
+                type: 'get',
+                url: url,
+                dataType: 'json',
+                success: function(response) {
+                    $('#customer_no').val(response);
 
-             }
-         });
-    });
+                }
+                });
+            });
        </script>
        
       

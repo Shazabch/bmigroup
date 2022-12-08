@@ -240,7 +240,7 @@ class CreditNoteController extends Controller
     {
         $creditnotes = CreditNote::find($id);
         $creditnotes->delete();
-        return back()->with('error','The credit note is deleted successfully !');
+        return response()->json(['status','CN has been deleted !']);
     }
 
     public function exportIntoExcel(){

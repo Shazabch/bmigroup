@@ -161,7 +161,7 @@ class adminController extends Controller
     {
         $users = Admin::find($id);
         $users->delete();
-        return back()->with('error','The user is deleted !');
+        return response()->json(['status','Admin has been deleted !']);
             
     }
 }

@@ -271,7 +271,7 @@ class invoiceController extends Controller
     {
         $invoice = invoice::find($id);
         $invoice->delete();
-        return redirect()->route('invoices.index')->with('error','Invoice Has Been Deleted  !');
+        return response()->json(['status','Invoice has been deleted !']);
     }
 
 

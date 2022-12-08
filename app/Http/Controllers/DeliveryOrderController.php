@@ -143,8 +143,7 @@ class DeliveryOrderController extends Controller
     public function destroy($id)
     {
         $deliveryOrder = DeliveryOrder::find($id)->delete();
-        return redirect()->route('deliveryOrders.index')
-        ->with('error','DO has been deleted  !');
+        return response()->json(['status','DO has been deleted !']);
     }
 
 

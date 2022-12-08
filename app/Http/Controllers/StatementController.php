@@ -207,6 +207,6 @@ class StatementController extends Controller
     {
         $statements = statement::find($id);
         $statements->delete();
-        return back()->with('error','Account Statement has been deleted !');
+        return response()->json(['status','Statement has been deleted !']);
     }
 }

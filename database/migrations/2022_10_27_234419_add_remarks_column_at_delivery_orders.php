@@ -26,7 +26,7 @@ class AddRemarksColumnAtDeliveryOrders extends Migration
     public function down()
     {
         Schema::table('delivery_orders', function (Blueprint $table) {
-            $table->dropColumn('remarks');
+            $table->dropColumn('remarks')->nullable();
         });
     }
 }

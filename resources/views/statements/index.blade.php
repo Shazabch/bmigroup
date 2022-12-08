@@ -82,14 +82,11 @@
               <tbody>
                 @foreach($statements as $statement)
                 <tr>
+                <input type="hidden" value="{{$statement->id}}" class="deleteid">
                      <td class="align-middle text-center">
                          &nbsp; <a class="dropdown-item" href="{{route('statements.show',$statement->id)}}"><i class="fa fa-eye text-info" aria-hidden="true"></i></a> 
                          &nbsp; <a class="dropdown-item" href="{{route('statements.edit',$statement->id)}}"><i class="fa fa-pencil text-dark" aria-hidden="true"></i></a>
-                         &nbsp; <a class="dropdown-item" href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('delete-form').submit(); "><i class="fa fa-bitbucket text-danger" aria-hidden="true"></i></a>
-                          <form id="delete-form" action="{{route('statements.destroy',$statement->id)}}" method="post">
-                            @csrf
-                            @method('delete')
-                          </form>
+                         &nbsp; <a class="dropdown-item" href="javascript:void(0);" ><i class="fa fa-bitbucket text-danger deletebtn" aria-hidden="true"></i></a>
                   </td>
                     <td style="display: none;">
                         <p class="text-xs font-weight-bold mb-0 ">{{$statement->id}}</p>
@@ -155,5 +152,46 @@
   function thousandSeparator(num) {
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
+</script>
+<script>
+    $(document).ready(function(){
+        $('.deletebtn').on('click',function(e){
+            e.preventDefault();
+            const delete_id = $(this).closest("tr").find('.deleteid').val();
+            console.log(delete_id);
+            Swal.fire({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                var data = {
+                    "_token" : '<?php echo csrf_token() ?>' ,
+                    "id" : delete_id,
+                };
+                var url = "{{ route('statements.destroy', ":id") }}";
+                url = url.replace(':id', delete_id);
+                $.ajax({
+                  type: "DELETE" ,
+                  url: url,
+                  data: data,
+                  success:function(response){
+                    Swal.fire(
+                      'Deleted!',
+                      'Statement has been deleted !',
+                      'success'
+                    ).then((result) => {
+                        location.reload();
+                    });
+                  }
+                });
+              }
+            })
+        });
+    });
 </script>
 @endsection

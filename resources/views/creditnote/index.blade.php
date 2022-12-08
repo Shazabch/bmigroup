@@ -79,17 +79,14 @@
               <tbody>
                 @foreach($creditnotes as $creditnote)
                 <tr>
+                <input type="hidden" value="{{$creditnote->id}}" class="deleteid">
                     <!-- <td style="display: none;">
                     <p class="text-xs font-weight-bold mb-0 ">{{$creditnote->id}}</p>
                     </td> -->
                     <td class="align-middle">
                          &nbsp; <a class="dropdown-item" href="{{route('creditnotes.show',$creditnote->id)}}"><i class="fa fa-eye text-info" aria-hidden="true"></i></a> 
                          &nbsp; <a class="dropdown-item" href="{{route('creditnotes.edit',$creditnote->id)}}"><i class="fa fa-pencil text-dark" aria-hidden="true"></i></a>
-                         &nbsp; <a class="dropdown-item" href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('delete-form').submit(); "><i class="fa fa-bitbucket text-danger" aria-hidden="true"></i></a>
-                          <form id="delete-form" action="{{route('creditnotes.destroy',$creditnote->id)}}" method="post">
-                            @csrf
-                            @method('delete')
-                          </form>
+                         &nbsp; <a class="dropdown-item" href="javascript:void(0);" ><i class="fa fa-bitbucket text-danger deletebtn" aria-hidden="true"></i></a>
                   </td>
                   <td>
                     <div class="mx-3">
@@ -170,5 +167,46 @@
      $(".select2-selection").addClass('form-select');
      $(".select2-selection").css({"border":"none", "padding":"0px"});
     //  $(".select2-selection").css("padding", "0px");});
+</script>
+<script>
+    $(document).ready(function(){
+        $('.deletebtn').on('click',function(e){
+            e.preventDefault();
+            const delete_id = $(this).closest("tr").find('.deleteid').val();
+            console.log(delete_id);
+            Swal.fire({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                var data = {
+                    "_token" : '<?php echo csrf_token() ?>' ,
+                    "id" : delete_id,
+                };
+                var url = "{{ route('creditnotes.destroy', ":id") }}";
+                url = url.replace(':id', delete_id);
+                $.ajax({
+                  type: "DELETE" ,
+                  url: url,
+                  data: data,
+                  success:function(response){
+                    Swal.fire(
+                      'Deleted!',
+                      'CN has been deleted !',
+                      'success'
+                    ).then((result) => {
+                        location.reload();
+                    });
+                  }
+                });
+              }
+            })
+        });
+    });
 </script>
 @endsection

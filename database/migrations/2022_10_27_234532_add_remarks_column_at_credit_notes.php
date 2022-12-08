@@ -14,7 +14,7 @@ class AddRemarksColumnAtCreditNotes extends Migration
     public function up()
     {
         Schema::table('credit_notes', function (Blueprint $table) {
-            $table->string('remarks');
+            $table->string('remarks')->nullable();
         });
     }
 

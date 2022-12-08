@@ -61,6 +61,13 @@ require __DIR__.'/auth.php';
 
     Route::middleware('admin')->group(function () {
 
+        //Routes For The Delivery Orders
+        Route::get('/deliveryOrders/upload',[DeliveryOrderController::class,'upload'])->name('deliveryOrder.upload');
+        Route::post('/deliveryOrders/upload1',[DeliveryOrderController::class,'upload1'])->name('deliveryOrder.upload1');
+        Route::post('/deliveryOrders/bulkUpload',[DeliveryOrderController::class,'bulkUpload'])->name('deliveryOrder.bulkUpload');
+        Route::get('/deliveryOrders/download/{id}',[DeliveryOrderController::class,'download'])->name('deliveryOrder.download');
+        Route::resource('deliveryOrders','DeliveryOrderController');
+
         Route::get('/change_password_admin',[adminController::class,'change_password_admin'])->name('change_password_admin');
         Route::post('/change_password_api_admin',[adminController::class,'change_password_api_admin'])->name('change_password_api_admin');
         Route::get('/profile_admin',[adminController::class,'profile_admin'])->name('admin_profile');
@@ -198,7 +205,7 @@ require __DIR__.'/auth.php';
    
     Route::get('invoices/edit/{invoice}',[invoiceController::class,'edit'])->name('invoices.edit');
     Route::put('invoices/update/{invoice}',[invoiceController::class,'update'])->name('invoices.update');
-    Route::delete('destroy/{id}',[invoiceController::class,'destroy'])->name('invoices.destroy');
+    Route::delete('invoices/destroy/{id}',[invoiceController::class,'destroy'])->name('invoices.destroy');
     Route::match(['get','post'],'/bulk-invoices',[fileController::class,'bulkInvoices'])->name('bulk-invoices');
     Route::post('invoice/bulkUpload',[fileController::class,'bulkUpload'])->name('invoices.bulkUpload');
     Route::resource('files','fileController');
@@ -206,12 +213,7 @@ require __DIR__.'/auth.php';
     
    
 
-    //Routes For The Delivery Orders
-    Route::get('/deliveryOrders/upload',[DeliveryOrderController::class,'upload'])->name('deliveryOrder.upload');
-    Route::post('/deliveryOrders/upload1',[DeliveryOrderController::class,'upload1'])->name('deliveryOrder.upload1');
-    Route::post('/deliveryOrders/bulkUpload',[DeliveryOrderController::class,'bulkUpload'])->name('deliveryOrder.bulkUpload');
-    Route::get('/deliveryOrders/download/{id}',[DeliveryOrderController::class,'download'])->name('deliveryOrder.download');
-    Route::resource('deliveryOrders','DeliveryOrderController');
+    
 
 
     //Routes For client side attachement

@@ -257,7 +257,7 @@ class DebitNoteController extends Controller
     {
         $debitnotes = DebitNote::find($id);
         $debitnotes->delete();
-        return back()->with('error','The debit note is deleted successfully !');
+        return response()->json(['status','DN has been deleted !']);
     }
     
     public function exportIntoExcel(){
