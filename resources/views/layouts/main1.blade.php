@@ -10,6 +10,7 @@
   <title>
     BMI Portal
   </title>
+  <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <link href="{{asset('soft-theme/assets/css/nucleo-icons.css')}}" rel="stylesheet" />
@@ -447,6 +448,7 @@
   <script src="{{asset('soft-theme/assets/js/core/bootstrap.min.js')}}"></script>
   <script src="{{asset('soft-theme/assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
   <script src="{{asset('soft-theme/assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
+  <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   
   @yield('scripts')
@@ -456,7 +458,7 @@
   <script src="{{ asset('js/app.js') }}" defer></script>
   <script src="{{asset('soft-theme/assets/js/plugins/dragula/dragula.min.js')}}"></script>
   <script src="{{asset('soft-theme/assets/js/plugins/jkanban/jkanban.js')}}"></script>
-  <script src="{{asset('soft-theme/assets/js/plugins/chartjs.min.js')}}"></script>
+  <script src="{{asset('soft-theme/assets/js/plugins/chartjs.min.js')}}"></script> 
   <script>
     var ctx1 = document.getElementById("chart-line-1").getContext("2d");
 

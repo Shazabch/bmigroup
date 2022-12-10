@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\invoice;
+use App\Models\TemporaryFiles;
 use App\Models\UploadFile;
 use App\Models\User;
 use Smalot\PdfParser\Parser;
@@ -59,8 +60,17 @@ class fileController extends Controller
      */
     public function store(Request $request)
     {
+        $something1 = array();
+        $filenames = array();
+        foreach($request->file as $file){
+            $temporaryFile = TemporaryFiles::where('folder',$file)->first();
+            $something = storage_path('app/tmp-invoices/'.$file.'/'.$temporaryFile->filename);
+            $something1[] = $something;
+            $filename = $temporaryFile->filename;
+            $filenames[] = $filename;
+        }
         $request->validate([
-            'file' => 'required',
+            // 'file' => 'required',
         ]);
         $users = User::where('status',1)->get();
         $file = $request->file;
@@ -74,17 +84,19 @@ class fileController extends Controller
         $do_no = array();
         $po_no = array();
 
-        foreach($request->file as $file)
+        foreach($something1 as $file)
         {
-            $prev_files[] = 'INV'.'-'.$file->getClientOriginalName();
-            $name='INV'.'-'.$file->getClientOriginalName();  
-            $data[] = $name;  
-            $filename = 'INV'.'-'.$file->getClientOriginalName();  
+            foreach($filenames as $filenm){
+                $prev_files[] = 'INV'.'-'.$filenm;
+                $name='INV'.'-'.$filenm;  
+                $data[] = $name;  
+                $filename = 'INV'.'-'.$filenm;  
+            }
             // $file->move(public_path('invoices'), $filename);
             $pdfParser = new Parser();
-            $pdf = $pdfParser->parseFile($file->path());
+            $pdf = $pdfParser->parseFile($file);
             $content = $pdf->getText();
-            $file->move(public_path('invoices'), $filename);
+            // $file->move(public_path('invoices'), $filename);
             $skuList = preg_split('/\r\n|\r|\n/', $content);
             foreach ($skuList as $value) {
                 if (strpos($value, 'Total Amount Malaysian Ringgit') !== false) 

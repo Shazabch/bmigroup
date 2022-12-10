@@ -8,6 +8,7 @@ use App\Models\DeliveryOrder;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\invoice;
+use App\Models\TemporaryFiles;
 use Smalot\PdfParser\Parser;
 use Illuminate\Http\Request;
 use Excel;
@@ -101,8 +102,20 @@ class DebitNoteController extends Controller
 
     }
     public function bulkupload(Request $request){
+
+        $something1 = array();
+        $filenames = array();
+        foreach($request->file as $file){
+            $temporaryFile = TemporaryFiles::where('folder',$file)->first();
+            $something = storage_path('app/tmp-debitnotes/'.$file.'/'.$temporaryFile->filename);
+            $something1[] = $something;
+            $filename = $temporaryFile->filename;
+            $filenames[] = $filename;
+        }
+
+
         $request->validate([
-            'file' => 'required',
+            // 'file' => 'required',
         ]);
         $deliveryorders = DeliveryOrder::all();
         $users = User::all();
@@ -116,20 +129,20 @@ class DebitNoteController extends Controller
         $po_no = array();
         $ref_no = array();
 
-        foreach($request->file as $file)
+        foreach($something1 as $file)
         {
             
-            
-            $prev_files[] = 'DN'.'-'.$file->getClientOriginalName();
-            $name='DN'.'-'.$file->getClientOriginalName();  
+            foreach($filenames as $filenm){   
+            $prev_files[] = 'DN'.'-'.$filenm;
+            $name='DN'.'-'.$filenm;  
             $data[] = $name;  
-            $filename = 'DN'.'-'.$file->getClientOriginalName();
+            $filename = 'DN'.'-'.$filenm;
+
+            }
             $pdfParser = new Parser();
-            $pdf = $pdfParser->parseFile($file->path());
+            $pdf = $pdfParser->parseFile($file);
             $content = $pdf->getText();
             $skuList = preg_split('/\r\n|\r|\n/', $content);
-            // dd($skuList);
-            $file->move(public_path('DN'), $filename);
             foreach ($skuList as $value) {
                 if (strpos($value, 'DN No.:') !== false) 
                     { 
@@ -292,5 +305,25 @@ class DebitNoteController extends Controller
 
     }
 
+    public function getupload(Request $request){
+        if($request->hasFile('file')){
+            // $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Apikey', 'YOUR_API_KEY');
+            // $apiInstance = new Swagger\Client\Api\ScanApi(  
+            // new GuzzleHttp\Client(),
+            // $config
+            // );
+            foreach($request->file('file') as $file){
+                $filename = $file->getClientOriginalName();
+                $folder = uniqid() . '-' .now()->timestamp;
+                $file->storeAs('tmp-debitnotes/'.$folder , $filename);
+                TemporaryFiles::create([
+                    'folder' =>  $folder,
+                    'filename' => $filename
+                ]);
+                return $folder;
+            }
+        }
+        return '';
+    }
 
 }

@@ -98,6 +98,7 @@ require __DIR__.'/auth.php';
 
          //Routes for the debit note 
 
+        Route::post('/getupload/debitnote',[DebitNoteController::class,'getupload'])->name('debitnote.upload');
         Route::get('/debitnote/upload',[DebitNoteController::class,'upload'])->name('debitnote.upload');
         Route::match(['get','post'],'/debitnote/upload1',[DebitNoteController::class,'upload1'])->name('debitnote.upload1');
         Route::match(['get','post'],'/debitnote/bulkupload',[DebitNoteController::class,'bulkupload'])->name('debitnote.bulkupload');
@@ -196,6 +197,7 @@ require __DIR__.'/auth.php';
     Route::get('/invoices/download/{id}',[invoiceController::class,'download'])->name('invoices.download');
     Route::match(['get','post'],'invoices/upload',[invoiceController::class,'upload'])->name('invoices.upload');
     // Route::match(['get','post'],'/invoices/index1',[invoiceController::class,'index'])->name('invoices.index');
+    Route::post('upload',[invoiceController::class,'getupload'])->name('getupload');
     Route::get('invoices/getCustomerNo/{id}',[invoiceController::class,'getCustomerNo'])->name('getCustomerNo');
     Route::get('invoices/getDONo/{id}',[invoiceController::class,'getDONo'])->name('getDONo');
     Route::get('invoices/getCustomerName/{id}',[invoiceController::class,'getCustomerName'])->name('getCustomerName');

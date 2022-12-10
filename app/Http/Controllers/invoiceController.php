@@ -13,6 +13,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Session;
 use App\Exports\InvoiceExport;
 use App\Exports\User_invoiceExport;
+use App\Models\TemporaryFiles;
 use Excel;
 use Illuminate\Support\Facades\Notification;
 use Symfony\Component\Console\Input\Input;
@@ -316,5 +317,26 @@ class invoiceController extends Controller
             return redirect()->back()->with('error','File Not Exist!');
         }
 
+    }
+
+
+    public function getupload(Request $request){
+        if($request->hasFile('file')){
+            
+             
+            foreach($request->file('file') as $file){
+                
+                $filename = $file->getClientOriginalName();
+                $folder = uniqid() . '-' .now()->timestamp;
+                $file->storeAs('tmp-invoices/'.$folder , $filename);
+
+                TemporaryFiles::create([
+                    'folder' =>  $folder,
+                    'filename' => $filename
+                ]);
+                return $folder;
+            }
+        }
+        return '';
     }
 }
