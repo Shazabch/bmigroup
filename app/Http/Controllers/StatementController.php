@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\statement;
+use App\Models\TemporaryFiles;
 use Smalot\PdfParser\Parser;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -112,8 +113,18 @@ class StatementController extends Controller
     }
     public function bulkUpload(Request $request)
     {
+        $something1 = array();
+        $filenames = array();
+        foreach($request->file as $file){
+            $temporaryFile = TemporaryFiles::where('folder',$file)->first();
+            $something = storage_path('app/tmp-statements/'.$file.'/'.$temporaryFile->filename);
+            $something1[] = $something;
+            $filename = $temporaryFile->filename;
+            $filenames[] = $filename;
+        }
+
        $request->validate([
-            'file' => 'required',
+            // 'file' => 'required',
         ]);
         $users = User::all();
         $file = $request->file;
@@ -123,16 +134,16 @@ class StatementController extends Controller
         $statement_date = array();
         $statement_d = array();
 
-        foreach($request->file as $file)
+        foreach($something1 as $file)
         {
-            
-            
-            $prev_files[] = 'Statement'.'-'.$file->getClientOriginalName();
-            $name='Statement'.'-'.$file->getClientOriginalName();  
-            $data[] = $name;  
-            $filename = 'Statement'.'-'.$file->getClientOriginalName();
+           foreach($filenames as $filenm){
+                $prev_files[] = 'Statement'.'-'.$filenm;
+                $name='Statement'.'-'.$filenm;  
+                $data[] = $name;  
+                $filename = 'Statement'.'-'.$filenm;
+           }
             $pdfParser = new Parser();
-            $pdf = $pdfParser->parseFile($file->path());
+            $pdf = $pdfParser->parseFile($file);
             $content = $pdf->getText();
             $skuList = preg_split('/\r\n|\r|\n/', $content);
             // $file->move(public_path('statements'), $filename);
@@ -209,4 +220,22 @@ class StatementController extends Controller
         $statements->delete();
         return response()->json(['status','Statement has been deleted !']);
     }
+
+    public function getupload(Request $request){
+        if($request->hasFile('file')){
+            foreach($request->file('file') as $file){
+                $filename = $file->getClientOriginalName();
+                $folder = uniqid() . '-' .now()->timestamp;
+                $file->storeAs('tmp-statements/'.$folder , $filename);
+                TemporaryFiles::create([
+                    'folder' =>  $folder,
+                    'filename' => $filename
+                ]);
+                return $folder;
+            }
+        }
+        return '';
+    }
+
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\DelivertOrders;
 use App\Models\DeliveryOrder;
 use App\Models\invoice;
+use App\Models\TemporaryFiles;
 use App\Models\User;
 use Smalot\PdfParser\Parser;
 use Illuminate\Support\Facades\Auth;
@@ -154,17 +155,27 @@ class DeliveryOrderController extends Controller
 
     }
     public function upload1(Request $request){
+
+        $something1 = array();
+        $filenames = array();
+        foreach($request->file as $file){
+            $temporaryFile = TemporaryFiles::where('folder',$file)->first();
+            $something = storage_path('app/tmp-deliveryorders/'.$file.'/'.$temporaryFile->filename);
+            $something1[] = $something;
+            $filename = $temporaryFile->filename;
+            $filenames[] = $filename;
+        }
+
         $request->validate([
-            'file' => 'required',
+            // 'file' => 'required',
         ]);
         $do_no = array();
         $prev_files = array();
-        foreach($request->file as $file){
-            $prev_files[] =$file->getClientOriginalName();
-            $name=$file->getClientOriginalName();  
+        foreach($filenames as $filenm){
+            $prev_files[] =$filenm;
+            $name=$filenm;  
             $data[] = $name;  
-            $filename = 'DO'.'-'.$file->getClientOriginalName();
-            $file->move(public_path('DO'), $filename);
+            $filename = 'DO'.'-'.$filenm;
         }
         $file = $request->file;
          $files = count($request->file);
@@ -225,6 +236,22 @@ class DeliveryOrderController extends Controller
 
     }
 
+
+    public function getupload(Request $request){
+        if($request->hasFile('file')){
+            foreach($request->file('file') as $file){
+                $filename = $file->getClientOriginalName();
+                $folder = uniqid() . '-' .now()->timestamp;
+                $file->storeAs('tmp-deliveryorders/'.$folder , $filename);
+                TemporaryFiles::create([
+                    'folder' =>  $folder,
+                    'filename' => $filename
+                ]);
+                return $folder;
+            }
+        }
+        return '';
+    }
 
 
 }

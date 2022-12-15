@@ -210,9 +210,9 @@ class invoiceController extends Controller
         $request->validate([
                 'user_id' => 'required | numeric' ,
                 'invoiceId' => 'required | numeric' ,
-                'do_no' => 'required | numeric' ,
-                'po_no' => 'required | numeric' ,
-                'remarks' => 'required' ,
+                // 'do_no' => 'required | numeric' ,
+                // 'po_no' => 'required | numeric' ,
+                // 'remarks' => 'required' ,
                 'date' => 'required' ,
             ]);
         $invoices = invoice::find($id);

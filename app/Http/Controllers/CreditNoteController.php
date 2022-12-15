@@ -8,6 +8,7 @@ use App\Models\DeliveryOrder;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\invoice;
+use App\Models\TemporaryFiles;
 use Smalot\PdfParser\Parser;
 use Illuminate\Http\Request;
 use Excel;
@@ -99,8 +100,17 @@ class CreditNoteController extends Controller
 
     }
     public function bulkupload(Request $request){
+        $something1 = array();
+        $filenames = array();
+        foreach($request->file as $file){
+            $temporaryFile = TemporaryFiles::where('folder',$file)->first();
+            $something = storage_path('app/tmp-creditnotes/'.$file.'/'.$temporaryFile->filename);
+            $something1[] = $something;
+            $filename = $temporaryFile->filename;
+            $filenames[] = $filename;
+        }
         $request->validate([
-            'file' => 'required',
+            // 'file' => 'required',
         ]);
         $deliveryorders = DeliveryOrder::all();
         $users = User::where('status',1)->get();
@@ -114,17 +124,19 @@ class CreditNoteController extends Controller
         $cn_date = array();
         $ref_no = array();
 
-         foreach($request->file as $file)
+         foreach($something1 as $file)
             {
-                $prev_files[] = time().'-'.$file->getClientOriginalName();
-            $name='CN'.'-'.$file->getClientOriginalName();  
-            $data[] = $name;  
-            $filename = 'CN'.'-'.$file->getClientOriginalName();
+              foreach($filenames as $filenm){
+                $prev_files[] = time().'-'.$filenm;
+                $name='CN'.'-'.$filenm;  
+                $data[] = $name;  
+                $filename = 'CN'.'-'.$filenm;
+              }
             $pdfParser = new Parser();
-            $pdf = $pdfParser->parseFile($file->path());
+            $pdf = $pdfParser->parseFile($file);
             $content = $pdf->getText();
             $skuList = preg_split('/\r\n|\r|\n/', $content);
-            $file->move(public_path('CN'), $filename);
+            // $file->move(public_path('CN'), $filename);
             foreach ($skuList as $value) {
                 if (strpos($value, 'CN No.:') !== false) 
                     { 
@@ -273,6 +285,22 @@ class CreditNoteController extends Controller
             return redirect()->back()->with('error','File Not Exist!');
         }
 
+    }
+
+    public function getupload(Request $request){
+        if($request->hasFile('file')){
+            foreach($request->file('file') as $file){
+                $filename = $file->getClientOriginalName();
+                $folder = uniqid() . '-' .now()->timestamp;
+                $file->storeAs('tmp-creditnotes/'.$folder , $filename);
+                TemporaryFiles::create([
+                    'folder' =>  $folder,
+                    'filename' => $filename
+                ]);
+                return $folder;
+            }
+        }
+        return '';
     }
 
 

@@ -15,7 +15,7 @@
 @endsection
    <div class="container-fluid p-2">
    <div class="row">
-        <div class="col-10 col-lg-10">
+        <div class="col-12 col-lg-12">
             <div class="card card-body">
             <h5 class="font-weight-bolder mb-0">Upload Statements</h5>
             <p class="mb-0 text-sm">Please upload maximum of 20 files at once.</p>
@@ -39,16 +39,19 @@
     </div>
    </div>
 @endsection
-<script>
-    Dropzone.autoDiscover = true;
-    var drop = document.getElementById('dropzone')
-    var myDropzone = new Dropzone(drop, {
-      url: "/file/post",
-      addRemoveLinks: true,
-
-    });
-  </script>
 @section('scripts')
-  <script src="{{asset('soft-theme/assets/js/plugins/dropzone.min.js')}}"></script>
-  
+  <script>
+      // Get a reference to the file input element
+      const inputElement = document.querySelector('input[id="file-upload"]');
+      // Create a FilePond instance
+      const pond = FilePond.create(inputElement);
+      FilePond.setOptions({
+        server: {
+          url: '/getupload/statements' ,
+          headers:{
+            'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+          }
+        }
+      }); 
+  </script>
 @endsection

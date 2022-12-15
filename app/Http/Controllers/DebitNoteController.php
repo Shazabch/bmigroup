@@ -307,11 +307,6 @@ class DebitNoteController extends Controller
 
     public function getupload(Request $request){
         if($request->hasFile('file')){
-            // $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Apikey', 'YOUR_API_KEY');
-            // $apiInstance = new Swagger\Client\Api\ScanApi(  
-            // new GuzzleHttp\Client(),
-            // $config
-            // );
             foreach($request->file('file') as $file){
                 $filename = $file->getClientOriginalName();
                 $folder = uniqid() . '-' .now()->timestamp;

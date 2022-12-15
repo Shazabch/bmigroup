@@ -62,6 +62,7 @@ require __DIR__.'/auth.php';
     Route::middleware('admin')->group(function () {
 
         //Routes For The Delivery Orders
+        Route::post('/getupload/deliveryorders',[DeliveryOrderController::class,'getupload'])->name('do.getupload');
         Route::get('/deliveryOrders/upload',[DeliveryOrderController::class,'upload'])->name('deliveryOrder.upload');
         Route::post('/deliveryOrders/upload1',[DeliveryOrderController::class,'upload1'])->name('deliveryOrder.upload1');
         Route::post('/deliveryOrders/bulkUpload',[DeliveryOrderController::class,'bulkUpload'])->name('deliveryOrder.bulkUpload');
@@ -104,6 +105,7 @@ require __DIR__.'/auth.php';
         Route::match(['get','post'],'/debitnote/bulkupload',[DebitNoteController::class,'bulkupload'])->name('debitnote.bulkupload');
         
         //Routes for the credit note 
+        Route::post('/getupload/creditnotes',[CreditNoteController::class,'getupload'])->name('cn.getupload');
         Route::get('/creditnote/upload',[CreditNoteController::class,'upload'])->name('creditnote.upload');
         Route::match(['get','post'],'/creditnote/upload1',[CreditNoteController::class,'upload1'])->name('creditnote.upload1');
         Route::match(['get','post'],'/creditnote/bulkupload',[CreditNoteController::class,'bulkupload'])->name('creditnote.bulkupload');
@@ -126,6 +128,7 @@ require __DIR__.'/auth.php';
     
     //Routes for Account Statement
     
+        Route::post('/getupload/statements',[StatementController::class,'getupload'])->name('statements.getupload');
         Route::get('statements/index',[StatementController::class,'index'])->name('statements.index');
         Route::delete('statements/delete/{id}',[StatementController::class,'destroy'])->name('statements.destroy');
         Route::put('statements/update/{id}',[StatementController::class,'update'])->name('statements.update');
