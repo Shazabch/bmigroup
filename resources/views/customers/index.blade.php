@@ -117,7 +117,7 @@
               </td>
               
               <td class="text-center">
-                <span class="text-secondary text-xs font-weight-bold">$user->created_at</span>
+                <span class="text-secondary text-xs font-weight-bold">{{$user->created_at}}</span>
               </td>
               
               <td>
