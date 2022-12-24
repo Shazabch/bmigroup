@@ -48,7 +48,7 @@
                     $users = get_all_users();
                   ?>
                   @foreach($users as $user)
-                    <option value={{$user->id}}>{{$user->name}}</option>
+                    <option value="{{$user->id}}">{{$user->name}}</option>
                   @endforeach
                 </select>
               </div>

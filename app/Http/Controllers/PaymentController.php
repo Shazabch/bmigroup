@@ -31,7 +31,7 @@ class PaymentController extends Controller
         // ->appends(['user_id'=> $user_id, 'do_no' => $do_no]);
 
         $id = Auth::user()->id;
-        $payments = payment::where('user_id',$id)->paginate(25);
+        $payments = payment::where('user_id',$id)->orderBy('id','desc')->paginate(25);
         return view('payments.index',  compact('payments'));
     }
 
@@ -163,6 +163,7 @@ class PaymentController extends Controller
 
 public function store2(Request $request)
     {
+        // dd($request->file('proof'));
         $request->validate([
             'amount' => 'required | numeric | min:0 ',
             'reference_id' => 'required | numeric',
@@ -187,7 +188,10 @@ public function store2(Request $request)
             $payments->amount = $request->input('amount');
             $payments->payment_date = $request->input('payment_date');
             $payments->reference_id = $request->input('reference_id');
-            // $payments->invoice_id = 0;
+            $filename1 = $request->file('proof');
+            $filename = $filename1->getClientOriginalName();
+            $filename1->move(public_path('payments'), $filename);
+            $payments->proof = $filename;
             $payments->user_invoices =$customer_no[$i];
             $payments->invoice_doc = $invoice_doc[$i];
             $payments->save();  

@@ -21,6 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var string[]
      */
+    protected $dates = ['created_at'];
     protected $fillable = [
         'company',
         'name',
