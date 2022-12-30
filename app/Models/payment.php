@@ -20,6 +20,11 @@ class payment extends Model
     public function user(){
         return $this->belongsTo(User::class)->withDefault();
     }
+
+    public function invoices()
+    {
+        return $this->belongsToMany(Invoice::class, 'payment_invoices')->withPivot('payment_id');
+    }
     
     
 }

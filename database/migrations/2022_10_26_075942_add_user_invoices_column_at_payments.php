@@ -14,7 +14,7 @@ class AddUserInvoicesColumnAtPayments extends Migration
     public function up()
     {
         Schema::table('payments', function (Blueprint $table) {
-            $table->string('user_invoices');
+            $table->string('user_invoices')->nullable();
         });
     }
 

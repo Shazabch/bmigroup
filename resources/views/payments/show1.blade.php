@@ -13,6 +13,13 @@
    </div>
 </nav>
 @endsection
+<div id="modal-show" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
 <div class="row mt-2 p-2">
     <div class="col m-2">
         <div class="card mt-2">
@@ -35,16 +42,8 @@
                     </div>
                     
                     <div class="col-md-6">
-                        <b>Invocie No.</b>
-                        <p>{!! preg_replace("/,/", '</br>', ($payment->user_invoices)) !!}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <b>Invoice Doc</b>
-                        <p>{!! preg_replace("/,/", '</br>', ($payment->invoice_doc)) !!}</p>
-                    </div>
-                    <div class="col-md-6">
                         <b>Amount</b>
-                        <p>{{$payment->amount}}</p>
+                        <p>{{convert_currency($payment->amount)}}</p>
                     </div>
                     <div class="col-md-6">
                         <b>Status</b>
@@ -65,4 +64,89 @@
         </div>
     </div>
 </div>
+<div class="row mt-2 p-2">
+    <div class="col m-2">
+        <div class="card mt-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="font-weight-bolder mb-0">Invoices Involved</h5>
+                    </div>
+                    <div class="table-responsive">
+    <div class="dataTable-wrapper dataTable-loading no-footer sortable fixed-height fixed-columns">
+      <div class="dataTable-top">
+        
+        <table class="table align-items-center mb-0">
+            
+          <thead class="mt-2">
+            <tr>
+              <!--<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Customer Name</th>-->
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Due Date</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Invoice No.</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Do No.</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount (MYR)</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Outstanding (MYR)</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Invoice Doc</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Do Doc</th>
+              <!--<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created at</th>-->
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($invoices as $invoice)
+            <tr data-id="{{$invoice->id}}">
+                <td>
+                    <p class="text-xs text-secondary mb-0 text-center">
+                            <i class="fa fa-usd text-success" title="Add Payment" style="cursor: pointer;" aria-hidden="true"></i>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-xs text-secondary mb-0 text-center">{{date_formatter($invoice->date)}}</p>
+              </td>
+              <!--<td>-->
+              <!--  <div class="d-flex px-2 py-1">-->
+              <!--    <div class="d-flex flex-column justify-content-center">-->
+              <!--      <p class="text-xs text-secondary mb-0">{{$invoice->user->name}}</p>-->
+              <!--    </div>-->
+              <!--  </div>-->
+              <!--</td>-->
+              <td>
+                    <p class="text-xs text-secondary mb-0 text-center">{{$invoice->invoiceId}}</p>
+              </td>
+               <td>
+                    <p class="text-xs text-secondary mb-0 text-center">{{$invoice->do_no}}</p>
+              </td>
+              <td>
+                    <p class="text-xs text-secondary mb-0 text-center">{{number_format($invoice->amount,2)}}</p>
+              </td>
+              <td>
+              <p class="text-xs text-secondary mb-0 text-center">{{number_format($invoice->outstanding,2)}}</p>
+              </td>
+              <td>
+                    <p class="text-xs text-secondary mb-0 text-center"><a class="text-info" href="{{route('download_inv',$invoice->id)}}">{{$invoice->invoice_doc}}</a></p>
+              </td>
+             
+              <!--<td class="align-middle text-center">-->
+              <!--  <span class="text-secondary text-xs font-weight-bold">{{$invoice->created_at ?  $invoice->created_at->diffForHumans() : 'N/A'}}</span>-->
+              <!--</td>-->
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+  $('table tbody tr').on('click', function() {
+        var id = $(this).data('id');
+  });
+</script>
 @endsection

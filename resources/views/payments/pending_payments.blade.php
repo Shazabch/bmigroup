@@ -72,13 +72,11 @@
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Customer No.</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Company Name</th>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Invoice No.</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
               <!--<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Due Date</th>-->
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Payment Date</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Proof Of Payment</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Reference No.</th>
-              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Invoice Doc</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">DO DOC</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">DN DOC</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">CN DOC</th>
@@ -87,7 +85,7 @@
           </thead>
           <tbody>
             @foreach($payments as $payment)
-            <tr>
+            <tr data-id="{{ $payment->id }}">
                  <td class="text-center ">
                 <!--<a href="{{route('payments.is_approved',$payment->id)}}"><i class="fa fa-check text-info" title="Approve Payment" aria-hidden="true"></i></a>-->
                 <a href="{{route('payments.is_approved',$payment->id)}}"><i class="fa fa-check text-info" title="Approve Payment" aria-hidden="true"></i></a>
@@ -105,15 +103,6 @@
                 <div class="d-flex px-2 py-1 text-center">
                     <p class="text-xs text-secondary text-center mb-0">
                       {{$payment->user->name}}
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div class="d-flex flex-column justify-content-center">
-                    <p class="text-xs text-secondary mb-0">
-                        {!! preg_replace("/,/", '</br>', ($payment->user_invoices)) !!}
                     </p>
                   </div>
                 </div>
@@ -144,13 +133,6 @@
                 <div class="d-flex px-2 py-1">
                   <div class="d-flex flex-column justify-content-center">
                     <p class="text-xs text-secondary mb-0">{{$payment->reference_id}}</p>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div class="d-flex flex-column justify-content-center">
-                    <p class="text-xs text-secondary mb-0">{!! preg_replace("/,/", '</br>', ($payment->invoice_doc)) !!}</p>
                   </div>
                 </div>
               </td>
@@ -195,3 +177,4 @@
   </div>
 </div>
 @endsection
+

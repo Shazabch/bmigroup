@@ -24,8 +24,6 @@
               <!-- <th class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7">ID</th> -->
               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Actions</th>
               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Reference No.</th>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Invoice No.</th>
-              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Invoice Doc</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount Paid</th>
               <!--<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Due Date</th>-->
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Payment Date</th>
@@ -40,53 +38,21 @@
                     <a href="{{route('payment.show',$payment->id)}}"><i class="fa fa-eye text-info" title="View Payment" aria-hidden="true"></i></a>
                 </td>
               <td class="text-center">
-                <div class="d-flex px-2 py-1">
-                  <div class="d-flex flex-column justify-content-center">
                     <p class="text-xs text-secondary mb-0">
                       {{$payment->reference_id}}
                     </p>
-                  </div>
-                </div>
               </td>
               
+             
               <td class="text-center">
-                <div class="d-flex px-2 py-1">
-                  <div class="d-flex flex-column justify-content-center">
-                    <p class="text-xs text-secondary mb-0">
-                      {!! preg_replace("/,/", '</br>', ($payment->user_invoices)) !!}
-                    </p>
-                  </div>
-                </div>
-              </td>
-               
-              <td class="text-center">
-                <div class="d-flex px-2 py-1">
-                  <div class="d-flex flex-column justify-content-center">
-                    <p class="text-xs text-secondary mb-0">{!! preg_replace("/,/", '</br>', ($payment->invoice_doc)) !!}</p>
-                  </div>
-                </div>
+                    <p class="text-xs text-secondary mb-0 text-center">{{convert_currency($payment->amount)}}</p>
               </td>
               <td class="text-center">
-                <div class="d-flex px-2 py-1">
-                  <div class="d-flex flex-column justify-content-center">
-                    <p class="text-xs text-secondary mb-0">{{$payment->amount}}</p>
-                  </div>
-                </div>
-              </td>
-              <td class="text-center">
-                <div class="d-flex px-2 py-1">
-                  <div class="d-flex flex-column justify-content-center">
                     <p class="text-xs text-secondary mb-0">{{date_formatter($payment->payment_date)}}</p>
-                  </div>
-                </div>
               </td>
               <td class="text-center">
-                <div class="d-flex px-2 py-1">
-                  <div class="d-flex flex-column justify-content-center">
                     <p class="text-xs text-secondary mb-0"><a style="color:#009fe3;" href="{{route('payments.download',$payment->id)}}">
                             {{$payment->proof}}</a></p>
-                  </div>
-                </div>
               </td>
               <td class="align-middle text-center">
               <span class="badge badge-sm {{$payment->status == 0 ? 'badge-secondary' : 'badge-success'}}">{{$payment->status == 0 ? 'PENDING ACKNOWLEDGEMENT' : 'ACKNOWLEDGED'}}</span>

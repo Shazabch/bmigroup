@@ -18,7 +18,6 @@
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="{{asset('soft-theme/assets/css/nucleo-svg.css')}}" rel="stylesheet" />
   <link id="pagestyle" href="{{asset('soft-theme/assets/css/soft-ui-dashboard.css?v=1.0.9')}}" rel="stylesheet" />
-  
   <link rel="stylesheet" type="text/css" 
      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   @livewireStyles

@@ -14,7 +14,7 @@ class AddOutstandingAtInvoices extends Migration
     public function up()
     {
         Schema::table('invoices', function (Blueprint $table) {
-            $table->integer('status')->nullable();
+            $table->integer('status')->default(0);
             $table->string('outstanding')->default('0');
         });
     }

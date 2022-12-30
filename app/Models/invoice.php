@@ -37,5 +37,10 @@ class invoice extends Model
         $records = DB::table('invoices')->select('id','date','invoiceId','invoice_doc','amount')->get()->toArray();
         return $records;
     }
+
+    public function payments()
+    {
+        return $this->belongsToMany(Payment::class, 'payment_invoices')->withPivot('payment_id');
+    }
 }
     

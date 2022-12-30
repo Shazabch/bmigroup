@@ -31,7 +31,7 @@ use App\Models\invoice;
 
 Route::get('/', function () {
     
-    return view('welcome');
+    return view('auth.login');
 });
 
 // Route::get('/email/verify', function () {

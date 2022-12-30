@@ -6,6 +6,7 @@ use App\Models\invoice;
 use App\Models\payment;
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\payment_invoice;
 use App\Notifications\PaymentProofUploaded; 
 use App\Models\User;
 use App\Notifications\PaymentApproved;
@@ -165,39 +166,29 @@ public function store2(Request $request)
     {
         // dd($request->file('proof'));
         $request->validate([
-            'amount' => 'required | numeric | min:0 ',
-            'reference_id' => 'required | numeric',
+            'amount' => 'required  | min:0 ',
+            'reference_id' => 'required ',
             'proof' => 'required',
             'payment_date' => 'required',
             'checkbox' => 'required'
             ]);
-        $invoice_docs = array();
-        $customer_no = array();
-            foreach($request->checkbox as $checks){
-            $customer_no2 = invoice::where('id',$checks)->get();
-            $customer_no1 = $customer_no2[0]->invoiceId;
-            $customer_no[] = $customer_no1;
-            $invoice_doc2 = invoice::where('id',$checks)->get();
-            $invoice_doc1 = $invoice_doc2[0]->invoice_doc;
-            $invoice_doc[] = $invoice_doc1;
-        }
-        $count = count($request->checkbox);
-        for($i=0 ; $i<$count ; $i++){
+
             $payments = new payment();
-            $payments->user_id = Auth::user()->id;
             $payments->amount = $request->input('amount');
-            $payments->payment_date = $request->input('payment_date');
             $payments->reference_id = $request->input('reference_id');
-            $filename1 = $request->file('proof');
-            $filename = $filename1->getClientOriginalName();
-            $filename1->move(public_path('payments'), $filename);
-            $payments->proof = $filename;
-            $payments->user_invoices =$customer_no[$i];
-            $payments->invoice_doc = $invoice_doc[$i];
-            $payments->save();  
-        }
-       
-       
+            $payments->payment_date = $request->input('payment_date');
+            if (!empty($request->file('proof'))){
+                $file = $request->file('proof');
+                $filename = $file->getClientOriginalname(); 
+                $file->move(public_path('payments'), $filename);
+                $files = $filename; 
+                $payments->proof = $files;
+            }
+            $payments->user_id = Auth::user()->id;
+            $payments->save();
+            $payments->invoices()->attach([12,13]);
+
+
        return redirect()->route('user_invoices')
        ->with('success','The New Payment Is Added');
     }
@@ -209,11 +200,13 @@ public function store2(Request $request)
      */
     public function show(payment $payment)
     {
-        return view('payments.show',compact('payment'));
+        $invoices = $payment->invoices()->get();
+        return view('payments.show',compact('payment','invoices'));
     }
     public function show1(payment $payment)
     {
-        return view('payments.show1',compact('payment'));
+        $invoices = $payment->invoices()->get();
+        return view('payments.show1',compact('payment','invoices'));
     }
 
     /**
