@@ -28,11 +28,11 @@
           <div class="row">
             <div class="col-md-6">
               <b>Customer No.</b>
-              <p v-text="payment.user?.customer_no"></p>
+              <p >{{$ad->customer_no}}</p>
             </div>
             <div class="col-md-6">
               <b>Company Name</b>
-              <p v-text="payment.user?.name"></p>
+              <p >{{$ad->name}}</p>
             </div>
 
             <div class="col-md-6">
@@ -89,7 +89,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="invoice in invoices">
+                      <tr v-for="invoice in invoices" :key="invoice.id">
                         <td>
                           <p class="text-xs text-secondary mb-0 text-center">
                             <i class="fa fa-usd text-success" title="Add Payment" style="cursor: pointer;" aria-hidden="true" @click="selectInvoice(invoice)"></i>
@@ -111,6 +111,10 @@
                           <p class="text-xs text-secondary mb-0 text-center" v-text="invoice.outstanding"></p>
                         </td>
                         <td>
+                          <p class="text-xs text-secondary mb-0 text-center"
+                          v-text="invoice.invoice_doc"></p>
+                        </td>
+                        <td>
                         </td>
 
                       </tr>
@@ -125,19 +129,18 @@
     </div>
   </div>
   <div v-if="showModal" class="d-flex align-items-center justify-content-center position-fixed" style="inset: 0; background-color: rgba(0, 0, 0, .4);">
-    <div class="bg-white w-75 p-3" style="max-width: 500px">
-      <header>This is header</header>
+    <div class="bg-white w-75 p-3 rounded" style="max-width: 500px">
       <div>
         <form @submit.prevent="makePayment">
           <div class="mb-3">
             <label for="payment-amount" class="form-label">Payment Amount</label>
-            <input type="number" step="0.01" class="form-control" id="payment-amount" placeholder="10000" v-model="paymentAmount" v-on:focus="selectInput">
+            <input type="number" step="0.01" class="form-control" id="payment-amount" placeholder="10000" v-model="paymentAmount" @:focus="selectInput" @keyup="scenarios">
           </div>
           <button type="submit" class="btn btn-secondary btn-sm">Pay</button>
         </form>
       </div>
       <footerc class="float-end">
-        <button class="btn btn-primary btn-sm" @click="showModal = !showModal">Close</button>
+        <button class="btn bg-gradient-info btn-sm" @click="showModal = !showModal">Close</button>
         </footer>
     </div>
   </div>
@@ -145,6 +148,7 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.45/vue.global.prod.min.js" integrity="sha512-3CesFAr6COyDB22AiVG2erk2moD1FeL3VMx6UezptTW3qmYdcQhfv6yDGmH4ICNTxd0Rs2AbMQ0Q5lG7J/8n3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   const data = <?php echo json_encode(['payment' => $payment, 'invoices' => $invoices]); ?>
@@ -154,27 +158,43 @@
       return {
         payment: data.payment,
         invoices: data.invoices,
-        showModal: true,
+        showModal: false,
         paymentAmount: 0,
         selectedInvoice: null,
       }
     },
     methods: {
       makePayment() {
-        console.log(this.paymentAmount);
-      },
-      selectInput(e) {
-        e.target.select();
-      },
-      selectInvoice(invoice) {
-        this.selectedInvoice = {
-          ...invoice
+          
+          axios.post('/payment/add-new-payment',{
+              selectInvoice : this.selectedInvoice.id ,
+              paymentAmount : this.paymentAmount ,
+            })
+            .then(response => {
+                console.log(this.selectedInvoice.outstanding);
+                console.log(response.data.invoiceAmount);
+                this.payment.amount = response.data.paymentAmount;
+                this.selectedInvoice.outstanding = response.data.invoiceAmount;
+                this.showModal = false;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+            },
+            selectInput(e) {
+                e.target.select();
+            },
+            scenarios(e) {
+                console.log(this.paymentAmount);
+            },
+            selectInvoice(invoice) {
+                this.selectedInvoice = {
+                ...invoice
+                };
+                this.showModal = true;
+            }
+            }
         };
-        this.showModal = true;
-        console.log(this.selectedInvoice);
-      }
-    }
-  };
 
   Vue.createApp(app).mount('#app');
 </script>

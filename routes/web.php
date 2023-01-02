@@ -91,6 +91,7 @@ require __DIR__.'/auth.php';
         Route::match(['get','post'],'payments/pending',[PaymentController::class,'pending'])->name('payments.pending');
         Route::match(['get','post'],'payments/approved',[PaymentController::class,'approved'])->name('payments.approved');
         Route::get('/payment/is_approved/{id}',[PaymentController::class,'is_approved'])->name('payments.is_approved');
+        Route::post('/payment/add-new-payment',[PaymentController::class,'add_new_payment'])->name('add_new_payment');
 
         //Routes for the credit notes
 

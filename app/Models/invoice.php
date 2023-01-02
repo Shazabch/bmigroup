@@ -40,7 +40,7 @@ class invoice extends Model
 
     public function payments()
     {
-        return $this->belongsToMany(Payment::class, 'payment_invoices')->withPivot('payment_id');
+        return $this->belongsToMany(Payment::class, 'payment_invoices');
     }
 }
     

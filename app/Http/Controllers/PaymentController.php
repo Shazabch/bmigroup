@@ -206,7 +206,8 @@ public function store2(Request $request)
     public function show1(payment $payment)
     {
         $invoices = $payment->invoices()->get();
-        return view('payments.show1',compact('payment','invoices'));
+        $ad = $payment->user;
+        return view('payments.show1',compact('payment','invoices','ad'));
     }
 
     /**
@@ -284,6 +285,24 @@ public function store2(Request $request)
         $items = $items instanceof Collection ? $items : Collection::make($items);
 
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    }
+
+    public function add_new_payment(Request $request){
+        $invoice_id = $request->input('selectInvoice');
+        $paymentAmount = $request->input('paymentAmount');
+        $invoices = invoice::find($invoice_id);
+        $invoices->outstanding = $invoices->outstanding - $paymentAmount;
+        $invoices->save();
+        $payment_id = $invoices->payments[0]['id'];
+        $payments = payment::find($payment_id);
+        $payments->amount = $payments->amount - $paymentAmount;
+        $payments->save();
+
+        return response()->json([
+            'invoiceAmount' => $invoices->outstanding,
+            'paymentAmount' => $payments->amount,
+        ]);
+
     }
 
     
