@@ -171,14 +171,13 @@
               paymentAmount : this.paymentAmount ,
             })
             .then(response => {
-                console.log(this.selectedInvoice.outstanding);
-                console.log(response.data.invoiceAmount);
                 this.payment.amount = response.data.paymentAmount;
-                this.selectedInvoice.outstanding = response.data.invoiceAmount;
+                const invoice = this.invoices.find(invoice => invoice.id === this.selectedInvoice.id);
+                invoice.outstanding = response.data.invoiceAmount;
                 this.showModal = false;
             })
             .catch(error => {
-                console.log(error);
+                console.error(error);
             });
             },
             selectInput(e) {
