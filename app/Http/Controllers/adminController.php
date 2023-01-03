@@ -148,7 +148,7 @@ class adminController extends Controller
         $users->name = $request->input('name');
         $users->email = $request->input('email');
         $users->save();
-        return redirect()->route('admins.index')->with('success' , 'Admin Has Been Added Successfully');
+        return redirect()->route('admins.index')->with('success' , 'Admin has been updated successfully');
     }
 
     /**

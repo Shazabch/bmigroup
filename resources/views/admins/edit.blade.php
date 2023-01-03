@@ -25,6 +25,7 @@
             <!-- Customer add form started here  -->
             <form action="{{route('admins.update',$admins->id)}}" method="POST">
                 @csrf
+                @method('PUT')
             <!-- company and name fields  -->
                
                    <div class="row">
