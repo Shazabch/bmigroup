@@ -32,7 +32,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach($payments as $payment)
+            @forelse($payments as $payment)
             <tr>
                 <td class="text-center">
                     <a href="{{route('payment.show',$payment->id)}}"><i class="fa fa-eye text-info" title="View Payment" aria-hidden="true"></i></a>
@@ -58,7 +58,11 @@
               <span class="badge badge-sm {{$payment->status == 0 ? 'badge-secondary' : 'badge-success'}}">{{$payment->status == 0 ? 'PENDING ACKNOWLEDGEMENT' : 'ACKNOWLEDGED'}}</span>
               </td>
             </tr>
-            @endforeach
+            @empty
+            <tr>
+            <p class="alert alert-secondary text-white " style="max-width: 300px;"><b>No Payments Found !</b></p>
+            </tr>
+            @endforelse
           </tbody>
         </table>
       </div>

@@ -142,6 +142,7 @@ class PaymentController extends Controller
         $payments->invoice = $invoices->invoiceId;
         // $payments->invoice_id = $request->input('invoice_id');
         $payments->amount = $invoices->amount;
+        $payments->outstanding = $invoices->outstanding;
         $payments->due_date = $invoices->date;
         $payments->user_id = Auth::user()->id;
         $payments->payment_date = $request->input('payment_date');
@@ -164,7 +165,6 @@ class PaymentController extends Controller
 
 public function store2(Request $request)
     {
-        // dd($request->file('proof'));
         $request->validate([
             'amount' => 'required  | min:0 ',
             'reference_id' => 'required ',
@@ -172,9 +172,10 @@ public function store2(Request $request)
             'payment_date' => 'required',
             'checkbox' => 'required'
             ]);
-
+            $check_invoices =  $request->checkbox;
             $payments = new payment();
             $payments->amount = $request->input('amount');
+            $payments->outstanding = $request->input('amount');
             $payments->reference_id = $request->input('reference_id');
             $payments->payment_date = $request->input('payment_date');
             if (!empty($request->file('proof'))){
@@ -186,7 +187,7 @@ public function store2(Request $request)
             }
             $payments->user_id = Auth::user()->id;
             $payments->save();
-            $payments->invoices()->attach([12,13]);
+            $payments->invoices()->attach($check_invoices);
 
 
        return redirect()->route('user_invoices')
@@ -295,12 +296,12 @@ public function store2(Request $request)
         $invoices->save();
         $payment_id = $invoices->payments[0]['id'];
         $payments = payment::find($payment_id);
-        $payments->amount = $payments->amount - $paymentAmount;
+        $payments->outstanding = $payments->outstanding - $paymentAmount;
         $payments->save();
 
         return response()->json([
             'invoiceAmount' => $invoices->outstanding,
-            'paymentAmount' => $payments->amount,
+            'paymentAmount' => $payments->outstanding,
         ]);
 
     }

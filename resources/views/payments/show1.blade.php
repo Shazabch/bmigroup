@@ -37,7 +37,11 @@
 
             <div class="col-md-6">
               <b>Amount</b>
-              <p v-text="payment.amount"></p>
+              <p v-text="toCurrency(payment.amount)"></p>
+            </div>
+            <div class="col-md-6">
+              <b>Outstanding</b>
+              <p v-text="toCurrency(payment.outstanding)"></p>
             </div>
             <div class="col-md-6">
               <b>Status</b>
@@ -105,10 +109,10 @@
                           <p class="text-xs text-secondary mb-0 text-center" v-text="invoice.do_no"></p>
                         </td>
                         <td>
-                          <p class="text-xs text-secondary mb-0 text-center" v-text="invoice.amount"></p>
+                          <p class="text-xs text-secondary mb-0 text-center" v-text="toCurrency(invoice.amount)"></p>
                         </td>
                         <td>
-                          <p class="text-xs text-secondary mb-0 text-center" v-text="invoice.outstanding"></p>
+                          <p class="text-xs text-secondary mb-0 text-center" v-text="toCurrency(invoice.outstanding)"></p>
                         </td>
                         <td>
                           <p class="text-xs text-secondary mb-0 text-center"
@@ -134,9 +138,10 @@
         <form @submit.prevent="makePayment">
           <div class="mb-3">
             <label for="payment-amount" class="form-label">Payment Amount</label>
+            <p v-text="c" ref="myText" ></p>
             <input type="number" step="0.01" class="form-control" id="payment-amount" placeholder="10000" v-model="paymentAmount" @:focus="selectInput" @keyup="scenarios">
           </div>
-          <button type="submit" class="btn btn-secondary btn-sm">Pay</button>
+          <button type="submit" :disabled="isDisabled" class="btn btn-secondary btn-sm">Pay</button>
         </form>
       </div>
       <footerc class="float-end">
@@ -161,17 +166,19 @@
         showModal: false,
         paymentAmount: 0,
         selectedInvoice: null,
+        isDisabled:false,
+        c:'',
       }
     },
     methods: {
-      makePayment() {
-          
+     
+          makePayment() {
           axios.post('/payment/add-new-payment',{
-              selectInvoice : this.selectedInvoice.id ,
-              paymentAmount : this.paymentAmount ,
+              selectInvoice : this.selectedInvoice.id,
+              paymentAmount : this.paymentAmount,
             })
-            .then(response => {
-                this.payment.amount = response.data.paymentAmount;
+            .then(response =>{
+                this.payment.outstanding = response.data.paymentAmount;
                 const invoice = this.invoices.find(invoice => invoice.id === this.selectedInvoice.id);
                 invoice.outstanding = response.data.invoiceAmount;
                 this.showModal = false;
@@ -183,14 +190,42 @@
             selectInput(e) {
                 e.target.select();
             },
+            toCurrency(value) {
+              return new Intl.NumberFormat('ur-PK', { style: 'currency', currency: 'MYR' }).format(value);
+            },
             scenarios(e) {
-                console.log(this.paymentAmount);
+                if(this.paymentAmount > this.payment.outstanding){
+                  this.c = 'The amount entered exceed the payment outstanding !';
+                  this.$refs.myText.style.color = 'red';
+                  this.$refs.myText.style.fontSize = '13px';
+                  this.$refs.myText.style.marginLeft = '5px';
+                  this.isDisabled = true ;
+                }
+                else if(this.paymentAmount < 0 ){
+                  this.$refs.myText.style.color = 'red';
+                  this.$refs.myText.style.fontSize = '13px';
+                  this.$refs.myText.style.marginLeft = '5px';
+                  this.c = 'The amount is incorrect !';
+                  this.isDisabled = true ;
+                }
+                else if(this.paymentAmount > this.selectedInvoice.outstanding){
+                  this.$refs.myText.style.color = 'red';
+                  this.$refs.myText.style.fontSize = '13px';
+                  this.$refs.myText.style.marginLeft = '5px';
+                  this.c = 'The amount enetered exceed the invoice outstanding!';
+                  this.isDisabled = true ;
+                }
+                else{
+                  this.c = '';
+                  this.isDisabled = false ;
+                }
             },
             selectInvoice(invoice) {
                 this.selectedInvoice = {
                 ...invoice
                 };
                 this.showModal = true;
+                console.log(this.formattedDate);
             }
             }
         };

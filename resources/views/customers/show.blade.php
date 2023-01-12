@@ -73,7 +73,7 @@
                     </div>
                     <div class="col-md-6">
                         <b>Created At</b>
-                        <p>{{$users->created_at->format('m/d/y')}}</p>
+                        <p>{{$users->created_at ? $users->created_at->format('m/d/y') : 'N/A'}}</p>
                     </div>
                     
                 </div>

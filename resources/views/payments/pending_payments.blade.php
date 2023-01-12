@@ -84,7 +84,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach($payments as $payment)
+            @forelse($payments as $payment)
             <tr data-id="{{ $payment->id }}">
                  <td class="text-center ">
                 <!--<a href="{{route('payments.is_approved',$payment->id)}}"><i class="fa fa-check text-info" title="Approve Payment" aria-hidden="true"></i></a>-->
@@ -162,7 +162,9 @@
               </td>
              
             </tr>
-            @endforeach
+            @empty
+            <p class="alert alert-secondary text-white " style="max-width: 300px;"><b>No Pending Payments :)</b></p>
+            @endforelse
           </tbody>
         </table>
       </div>
